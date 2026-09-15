@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh458ajt0gw1j"]
+
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_pu8sp"]
+
+[node name="ScoreNumber" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -7.5
+offset_right = 22.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pu8sp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.381703, 0.381703, 0.381703, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

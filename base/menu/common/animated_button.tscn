@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cub5ixau0orgh"]
+
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_h2tl6"]
+[ext_resource type="Script" uid="uid://ci5pk7ebiqg86" path="res://base/menu/common/animated_button.gd" id="1_nwgvu"]
+
+[node name="AnimatedButton" type="Button" unique_id=1940137882]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = -300.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme = ExtResource("1_h2tl6")
+text = "aa"
+script = ExtResource("1_nwgvu")

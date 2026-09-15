@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://8wi501ydmfrx"]
+
+[ext_resource type="Shader" uid="uid://b857ftx7stk87" path="res://assets/shaders/crt-effect.gdshader" id="1_bfpi5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qe2dj"]
+shader = ExtResource("1_bfpi5")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.243
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.189
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
+
+[node name="CRT-Effect" type="ColorRect"]
+material = SubResource("ShaderMaterial_qe2dj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

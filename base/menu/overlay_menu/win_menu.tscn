@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://by632jqo48fbs"]
+
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_nxcle"]
+[ext_resource type="Script" uid="uid://bui4ncqhtuy1p" path="res://base/menu/overlay_menu/win_menu.gd" id="1_to7dx"]
+[ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_usvka"]
+
+[node name="WinMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nxcle")
+script = ExtResource("1_to7dx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.117647)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[wave]Game Won!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+
+"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Restart" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Restart"
+
+[node name="Continue" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenu" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_usvka")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Main Menu"
