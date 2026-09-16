@@ -36,3 +36,7 @@ func jump():
 
 func _is_grounded_mode():
 	return motion_mode == MotionMode.MOTION_MODE_GROUNDED
+
+
+func shot():
+	pass

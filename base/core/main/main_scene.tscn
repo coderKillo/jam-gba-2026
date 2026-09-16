@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_6lyvc"]
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
 [ext_resource type="Texture2D" uid="uid://dmpic5d7a6p0b" path="res://assets/factory/background.png" id="4_6lyvc"]
+[ext_resource type="Script" uid="uid://c4wcuhr0mrxdh" path="res://game/entities/gun.gd" id="6_6icyu"]
 [ext_resource type="Texture2D" uid="uid://d1tui35i4aprj" path="res://assets/factory/belt-sheet.png" id="6_ma400"]
+[ext_resource type="Texture2D" uid="uid://fxexotcpflqr" path="res://assets/factory/gun-sheet.png" id="6_ociif"]
 [ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="7_ociif"]
 [ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="8_6icyu"]
 
@@ -15,11 +17,6 @@ size = Vector2(18.75, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ociif"]
 size = Vector2(18.75, 74)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
-size = Vector2(10.25, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dgia"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ociif"]
 atlas = ExtResource("6_ma400")
@@ -59,6 +56,69 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gygrg"]
 size = Vector2(6, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p8nd"]
+atlas = ExtResource("6_ociif")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bicih"]
+atlas = ExtResource("6_ociif")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3pcb"]
+atlas = ExtResource("6_ociif")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyqf4"]
+atlas = ExtResource("6_ociif")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax4ej"]
+atlas = ExtResource("6_ociif")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h0lk"]
+atlas = ExtResource("6_ociif")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dgia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p8nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bicih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3pcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyqf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax4ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h0lk")
+}],
+"loop": 0,
+"name": &"fire",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p8nd")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(10.25, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dgia"]
 
 [node name="MainScene" type="Control" unique_id=1643110070 node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
@@ -115,29 +175,6 @@ position = Vector2(-415, -67)
 collision_layer = 3
 speed = 50.0
 
-[node name="Triggers" type="Node2D" parent="World" unique_id=265691375]
-position = Vector2(-430, -175)
-
-[node name="ExitTrigger" type="Area2D" parent="World/Triggers" unique_id=547724127]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Triggers/ExitTrigger" unique_id=423102134]
-position = Vector2(10, 2)
-shape = SubResource("RectangleShape2D_c3t6r")
-
-[node name="ShopTrigger" type="Area2D" parent="World/Triggers" unique_id=734911981]
-unique_name_in_owner = true
-position = Vector2(-7, 60)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Triggers/ShopTrigger" unique_id=1074854234]
-shape = SubResource("RectangleShape2D_0dgia")
-
 [node name="ConveyorBelt" type="AnimatedSprite2D" parent="World" unique_id=1960484822]
 position = Vector2(-400, -103)
 sprite_frames = SubResource("SpriteFrames_c3t6r")
@@ -157,6 +194,47 @@ offset_top = -10.0
 offset_right = 7.0
 offset_bottom = 10.0
 color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+
+[node name="Gun" type="Node2D" parent="World" unique_id=54388712]
+position = Vector2(-381, -161)
+script = ExtResource("6_6icyu")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="World/Gun" unique_id=1543745294]
+sprite_frames = SubResource("SpriteFrames_0dgia")
+animation = &"fire"
+autoplay = "idle"
+frame = 5
+frame_progress = 1.0
+
+[node name="Projectile" type="Line2D" parent="World/Gun/Sprite" unique_id=818022162]
+visible = false
+position = Vector2(-9.970001, -0.5)
+points = PackedVector2Array(-51.465, 0, 0, 0)
+closed = true
+width = 1.0
+default_color = Color(0.99607843, 0.8156863, 0.09411765, 1)
+
+[node name="Triggers" type="Node2D" parent="." unique_id=265691375]
+
+[node name="ExitTrigger" type="Area2D" parent="Triggers" unique_id=547724127]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ExitTrigger" unique_id=423102134]
+position = Vector2(10, 2)
+shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="ShopTrigger" type="Area2D" parent="Triggers" unique_id=734911981]
+unique_name_in_owner = true
+position = Vector2(-7, 60)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ShopTrigger" unique_id=1074854234]
+shape = SubResource("RectangleShape2D_0dgia")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904130412]
 layer = 2
