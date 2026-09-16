@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://h0mgu43ccb2v"]
+[gd_scene format=3 uid="uid://h0mgu43ccb2v"]
 
 [ext_resource type="Shader" uid="uid://blbwmime2qoea" path="res://assets/shaders/diamond_transition.gdshader" id="1_4h4et"]
 
@@ -16,11 +16,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i4lep"]
 gradient = SubResource("Gradient_5soiv")
 
-[node name="SceneChanger" type="CanvasLayer"]
+[node name="SceneChanger" type="CanvasLayer" unique_id=1867953809]
 process_mode = 3
 layer = 99
 
-[node name="Transition" type="TextureRect" parent="."]
+[node name="Transition" type="TextureRect" parent="." unique_id=23278836]
 modulate = Color(1, 1, 1, 0.466667)
 self_modulate = Color(1, 1, 1, 0.929412)
 material = SubResource("ShaderMaterial_jicio")

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bafc1xgqnsgf0"]
+
+[ext_resource type="Script" uid="uid://dnwfiiftf703c" path="res://game/entities/player/character.gd" id="1_qrq2s"]
+[ext_resource type="Texture2D" uid="uid://c4gbhp32jxf1k" path="res://assets/player/player-sheet.png" id="1_w2hoi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrq2s"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(0, 10, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wre7n"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(10, 10, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhkvf"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(20, 10, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktbsj"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v0qi"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ismax"]
+atlas = ExtResource("1_w2hoi")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3t6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrq2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wre7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhkvf")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktbsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v0qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ismax")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(2, 6)
+
+[node name="Character" type="CharacterBody2D" unique_id=1965871390]
+motion_mode = 1
+script = ExtResource("1_qrq2s")
+speed = 100.0
+jump_velocity = -150.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130268459]
+sprite_frames = SubResource("SpriteFrames_c3t6r")
+animation = &"idle"
+frame_progress = 0.6129974
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513910839]
+shape = SubResource("RectangleShape2D_c3t6r")

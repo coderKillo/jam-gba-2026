@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://di5m16gs7hbeb"]
+
+[ext_resource type="Script" uid="uid://cevdaooi4or5i" path="res://game/levels/shop/shop_level.gd" id="1_cqqiu"]
+[ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="1_thy4y"]
+[ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="2_cqqiu"]
+
+[node name="ShopLevel" type="Node2D" unique_id=862845685]
+script = ExtResource("1_cqqiu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2145086870]
+custom_minimum_size = Vector2(160, 140)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+
+[node name="NextShiftButton" parent="." unique_id=1940137882 instance=ExtResource("1_thy4y")]
+offset_left = 56.0
+offset_top = 118.0
+offset_right = 106.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("2_cqqiu")
+theme_override_font_sizes/font_size = 8
+text = "Next Shift"

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dgevxlfsfke2a"]
+
+[ext_resource type="Script" uid="uid://dk7v5knv0tqxf" path="res://game/levels/corridor/corridor_level.gd" id="1_8c4ft"]
+[ext_resource type="Texture2D" uid="uid://bi4h7srv85gde" path="res://assets/factory/background-corridor.png" id="2_3e8fi"]
+[ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="3_3e8fi"]
+[ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="3_8yr2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(161, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yr2k"]
+size = Vector2(19.5, 144)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gygrg"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dgia"]
+size = Vector2(2.5, 16)
+
+[node name="CorridorLevel" type="Node2D" unique_id=1469044862]
+script = ExtResource("1_8c4ft")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1248503898]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_3e8fi")
+
+[node name="Player" parent="." unique_id=1965871390 instance=ExtResource("3_8yr2k")]
+position = Vector2(17, 94)
+collision_layer = 3
+motion_mode = 0
+speed = 100.0
+jump_velocity = -150.0
+
+[node name="InputManager" type="Node2D" parent="." unique_id=1989236659]
+script = ExtResource("3_3e8fi")
+
+[node name="WorldBorders" type="StaticBody2D" parent="." unique_id=1094102591]
+position = Vector2(80, 72)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorders" unique_id=1916633742]
+position = Vector2(0, -49)
+shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorders" unique_id=1241556052]
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBorders" unique_id=1739823750]
+position = Vector2(87, 0)
+shape = SubResource("RectangleShape2D_8yr2k")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBorders" unique_id=1557553202]
+position = Vector2(-89, 0)
+shape = SubResource("RectangleShape2D_8yr2k")
+
+[node name="CoworkerSpawn" type="Node2D" parent="." unique_id=2031977014]
+
+[node name="CoworkerTrigger" type="Area2D" parent="." unique_id=1055008893]
+position = Vector2(52, 78)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoworkerTrigger" unique_id=1198817132]
+shape = SubResource("WorldBoundaryShape2D_gygrg")
+
+[node name="ExitTrigger" type="Area2D" parent="." unique_id=945161471]
+position = Vector2(156, 89)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger" unique_id=2064874325]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_0dgia")

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c176p1imvld44" path="res://base/menu/main_menu/option_menu.gd" id="2_byskk"]
 [ext_resource type="Script" uid="uid://mhomivb5vuru" path="res://base/menu/main_menu/level_select.gd" id="3_luyhs"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_rk3xn"]
-[ext_resource type="PackedScene" uid="uid://8wi501ydmfrx" path="res://base/gui/crt_effect.tscn" id="6_xq2ug"]
+[ext_resource type="Texture2D" uid="uid://dmpic5d7a6p0b" path="res://assets/factory/background.png" id="3_xq2ug"]
 
 [node name="MainMenu" type="Control" unique_id=1977275918]
 layout_mode = 3
@@ -18,6 +18,12 @@ theme = ExtResource("1_lue4o")
 script = ExtResource("1_1jjd6")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=2106969971]
+
+[node name="Background" type="TextureRect" parent="." unique_id=1758616444]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 144.0
+texture = ExtResource("3_xq2ug")
 
 [node name="Menu" type="Control" parent="." unique_id=284743609]
 layout_mode = 1
@@ -40,12 +46,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -163.0
-offset_top = 50.0
-offset_right = 163.0
-offset_bottom = 97.0
+offset_left = -80.0
+offset_top = 7.0
+offset_right = 80.0
+offset_bottom = 57.0
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave] Game Name [/wave]"
 fit_content = true
@@ -59,18 +65,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.5
-offset_top = -135.5
-offset_right = 49.5
-offset_bottom = 135.5
+offset_left = -25.0
+offset_top = -108.0
+offset_right = 25.0
+offset_bottom = 163.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer" unique_id=1584405903]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 2
 
 [node name="Continue" parent="Menu/MarginContainer/VBoxContainer" unique_id=2014742942 instance=ExtResource("3_rk3xn")]
 unique_name_in_owner = true
@@ -114,27 +120,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 30
 
 [node name="PanelContainer" type="PanelContainer" parent="Option/MarginContainer" unique_id=199586628]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Option/MarginContainer/PanelContainer" unique_id=1268784427]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer" unique_id=1902566833]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer" unique_id=1082282186]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 
 [node name="Label" type="Label" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1264633991]
 layout_mode = 2
@@ -143,16 +149,16 @@ horizontal_alignment = 1
 
 [node name="Master" type="HBoxContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1053782122]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Master" unique_id=1655186272]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Master"
 
 [node name="MasterVolume" type="HSlider" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Master" unique_id=218944635]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 5.0
@@ -160,16 +166,16 @@ step = 0.1
 
 [node name="Music" type="HBoxContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=412836230]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Music" unique_id=1187500524]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Music"
 
 [node name="MusicVolume" type="HSlider" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Music" unique_id=868117579]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 5.0
@@ -177,16 +183,16 @@ step = 0.1
 
 [node name="SFX" type="HBoxContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1847251684]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/SFX" unique_id=1970837416]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "SFX"
 
 [node name="SfxVolume" type="HSlider" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/SFX" unique_id=1480524117]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 5.0
@@ -194,10 +200,10 @@ step = 0.1
 
 [node name="Mute" type="HBoxContainer" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer" unique_id=1828166956]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="Option/MarginContainer/PanelContainer/MarginContainer/CenterContainer/VBoxContainer/Mute" unique_id=1988211116]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Mute"
 
@@ -263,20 +269,19 @@ columns = 5
 
 [node name="Back" parent="." unique_id=1520954551 instance=ExtResource("3_rk3xn")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -40.0
-offset_right = 70.0
-offset_bottom = -10.0
+offset_left = 2.0
+offset_top = -24.0
+offset_right = 52.0
+offset_bottom = -12.0
 grow_horizontal = 1
 grow_vertical = 0
-text = "Quit"
+text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1423743859]
 layout_mode = 1
@@ -285,13 +290,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -54.26
-offset_right = -10.0
-offset_bottom = -13.26
+offset_left = -52.0
+offset_top = -24.0
+offset_right = -2.0
+offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/separation = 7
+theme_override_constants/separation = 2
 
 [node name="Feedback" parent="VBoxContainer" unique_id=1622585388 instance=ExtResource("3_rk3xn")]
 unique_name_in_owner = true
@@ -306,10 +311,13 @@ horizontal_alignment = 2
 
 [node name="ConfimNewGame" type="ConfirmationDialog" parent="." unique_id=636647256]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "New Game"
-position = Vector2i(0, 36)
-size = Vector2i(418, 100)
-dialog_text = "Starting a new game will reset all game data."
-
-[node name="CRT-Effect" parent="." unique_id=383198665 instance=ExtResource("6_xq2ug")]
-layout_mode = 1
+initial_position = 1
+size = Vector2i(120, 51)
+wrap_controls = false
+unresizable = true
+borderless = true
+min_size = Vector2i(0, 50)
+dialog_text = "   Starting a new game 
+will reset all game data?"

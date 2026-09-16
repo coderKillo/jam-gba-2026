@@ -30,6 +30,22 @@ func load_game_scene():
 	_change_scene_to_main(scene_resource.main_scene)
 
 
+func load_corridor_scene():
+	_change_scene_to_menu(scene_resource.corridor_scene)
+
+
+func load_tutorial_scene():
+	_change_scene_to_menu(scene_resource.tutorial_scene)
+
+
+func load_shop_scene():
+	_change_scene_to_menu(scene_resource.shop_scene)
+
+
+func load_end_scene():
+	_change_scene_to_menu(scene_resource.end_scene)
+
+
 func load_main_menu():
 	_change_scene_to_menu(scene_resource.main_menu)
 

@@ -4,16 +4,16 @@
 [ext_resource type="Script" uid="uid://ci5pk7ebiqg86" path="res://base/menu/common/animated_button.gd" id="1_nwgvu"]
 
 [node name="AnimatedButton" type="Button" unique_id=1940137882]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(50, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-offset_right = -300.0
-offset_bottom = -161.0
+offset_left = -80.0
+offset_top = -72.0
+offset_right = -30.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true

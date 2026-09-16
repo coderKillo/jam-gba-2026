@@ -2,10 +2,63 @@
 
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_6lyvc"]
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
-[ext_resource type="PackedScene" uid="uid://8wi501ydmfrx" path="res://base/gui/crt_effect.tscn" id="2_h8xxh"]
-[ext_resource type="PackedScene" uid="uid://7eh1kmaickso" path="res://game/levels/level1.tscn" id="2_qe2dj"]
-[ext_resource type="Script" uid="uid://cwke7gf74johg" path="res://base/2d/effects/popup_text_controller.gd" id="5_ma400"]
-[ext_resource type="PackedScene" uid="uid://dh458ajt0gw1j" path="res://base/2d/effects/popup_text.tscn" id="6_ociif"]
+[ext_resource type="Texture2D" uid="uid://dmpic5d7a6p0b" path="res://assets/factory/background.png" id="4_6lyvc"]
+[ext_resource type="Texture2D" uid="uid://d1tui35i4aprj" path="res://assets/factory/belt-sheet.png" id="6_ma400"]
+[ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="7_ociif"]
+[ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="8_6icyu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
+size = Vector2(161, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma400"]
+size = Vector2(18.75, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ociif"]
+size = Vector2(18.75, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
+size = Vector2(10.25, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dgia"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ociif"]
+atlas = ExtResource("6_ma400")
+region = Rect2(0, 0, 16, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6icyu"]
+atlas = ExtResource("6_ma400")
+region = Rect2(16, 0, 16, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugwa6"]
+atlas = ExtResource("6_ma400")
+region = Rect2(32, 0, 16, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0q8c"]
+atlas = ExtResource("6_ma400")
+region = Rect2(48, 0, 16, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3t6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ociif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6icyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugwa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0q8c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gygrg"]
+size = Vector2(6, 20)
 
 [node name="MainScene" type="Control" unique_id=1643110070 node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
@@ -19,10 +72,91 @@ theme = ExtResource("1_6lyvc")
 script = ExtResource("1_awp0h")
 level_container = NodePath("World")
 gui = NodePath("CanvasLayer/Gui")
-debug_level = ExtResource("2_qe2dj")
+
+[node name="Background" type="TextureRect" parent="." unique_id=575462685]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 144.0
+texture = ExtResource("4_6lyvc")
 
 [node name="World" type="Node2D" parent="." unique_id=91954414]
 position = Vector2(430, 175)
+
+[node name="WorldBorders" type="StaticBody2D" parent="World" unique_id=1519089455]
+position = Vector2(-350, -103)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WorldBorders" unique_id=331578610]
+position = Vector2(1, -94)
+shape = SubResource("RectangleShape2D_dn4rf")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="World/WorldBorders" unique_id=193724401]
+position = Vector2(16, -83)
+shape = SubResource("RectangleShape2D_dn4rf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/WorldBorders" unique_id=676189804]
+position = Vector2(0, 92)
+shape = SubResource("RectangleShape2D_dn4rf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/WorldBorders" unique_id=1150811698]
+position = Vector2(-49, 0)
+shape = SubResource("RectangleShape2D_ma400")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/WorldBorders" unique_id=842637046]
+position = Vector2(-85, 35)
+shape = SubResource("RectangleShape2D_ociif")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="World/WorldBorders" unique_id=812205397]
+position = Vector2(-85, -58)
+shape = SubResource("RectangleShape2D_ociif")
+
+[node name="Player" parent="World" unique_id=1965871390 instance=ExtResource("7_ociif")]
+position = Vector2(-415, -67)
+collision_layer = 3
+speed = 50.0
+
+[node name="Triggers" type="Node2D" parent="World" unique_id=265691375]
+position = Vector2(-430, -175)
+
+[node name="ExitTrigger" type="Area2D" parent="World/Triggers" unique_id=547724127]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Triggers/ExitTrigger" unique_id=423102134]
+position = Vector2(10, 2)
+shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="ShopTrigger" type="Area2D" parent="World/Triggers" unique_id=734911981]
+unique_name_in_owner = true
+position = Vector2(-7, 60)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Triggers/ShopTrigger" unique_id=1074854234]
+shape = SubResource("RectangleShape2D_0dgia")
+
+[node name="ConveyorBelt" type="AnimatedSprite2D" parent="World" unique_id=1960484822]
+position = Vector2(-400, -103)
+sprite_frames = SubResource("SpriteFrames_c3t6r")
+autoplay = "default"
+frame_progress = 0.29356936
+
+[node name="ShopBlocker" type="StaticBody2D" parent="World" unique_id=931035213]
+position = Vector2(-432, -115)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/ShopBlocker" unique_id=343065459]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_gygrg")
+
+[node name="ColorRect" type="ColorRect" parent="World/ShopBlocker" unique_id=1368191352]
+offset_left = 2.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 10.0
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904130412]
 layer = 2
@@ -37,17 +171,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_6lyvc")
 
-[node name="Label" type="Label" parent="CanvasLayer/Gui" unique_id=1242773304]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Healt: 100"
-
-[node name="CRT-Effect" parent="CanvasLayer" unique_id=1628628620 instance=ExtResource("2_h8xxh")]
-
 [node name="Controller" type="Node" parent="." unique_id=844771318]
 
-[node name="PopupTextController" type="Node" parent="Controller" unique_id=1086340265 node_paths=PackedStringArray("level_container")]
-script = ExtResource("5_ma400")
-level_container = NodePath("../../World")
-damage_number_scene = ExtResource("6_ociif")
+[node name="InputManager" type="Node2D" parent="Controller" unique_id=219787534]
+script = ExtResource("8_6icyu")

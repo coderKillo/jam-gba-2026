@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bins5lqklfnia"
-path="res://.godot/imported/screenshot_2025-07-30_14:08:47.png-c7f5aa23f592222b647c3f4b8642df3d.ctex"
+uid="uid://0m5c3102vytt"
+path="res://.godot/imported/dirt-cells.png-99d8ecdc34874c11e154b934537a4499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://doc/screenshots/screenshot_2025-07-30_14:08:47.png"
-dest_files=["res://.godot/imported/screenshot_2025-07-30_14:08:47.png-c7f5aa23f592222b647c3f4b8642df3d.ctex"]
+source_file="res://assets/factory/dirt-cells.png"
+dest_files=["res://.godot/imported/dirt-cells.png-99d8ecdc34874c11e154b934537a4499.ctex"]
 
 [params]
 

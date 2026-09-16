@@ -4,20 +4,33 @@ extends Control
 @export var level_container: Node
 @export var gui: Control
 
-@export_category("Debug")
-@export var debug_level: PackedScene
+@onready var player: Character = $World/Player
+@onready var input_manager: InputManager = $Controller/InputManager
+@onready var shop_blocker: StaticBody2D = $World/ShopBlocker
 
 
 func _ready():
-	if not is_instance_valid(SceneManager.main) and debug_level:
-		await get_tree().root.ready
-		SceneManager.load_level_scene(debug_level)
-	SceneManager.main = self
+	input_manager.move.connect(_on_player_move)
+
+	%ExitTrigger.body_entered.connect(_on_exit_entered)
+	%ShopTrigger.body_entered.connect(_on_shop_entered)
+
+	_open_shop(true)
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_up"):
-		Events.level_lose.emit()
+func _on_player_move(direction: Vector2):
+	player.move(direction)
 
-	if Input.is_action_just_pressed("ui_down"):
-		Events.level_won.emit()
+
+func _on_exit_entered(_body):
+	SceneManager.load_corridor_scene()
+
+
+func _on_shop_entered(_body):
+	print(_body)
+	SceneManager.load_shop_scene()
+
+
+func _open_shop(open: bool):
+	shop_blocker.visible = not open
+	shop_blocker.shape_owner_set_disabled(0, open)

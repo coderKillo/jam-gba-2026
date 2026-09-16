@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cd844v3o1tl6f"]
+
+[ext_resource type="Script" uid="uid://d1b4ff4lpo4jo" path="res://game/levels/tutorial/tutorial_level.gd" id="1_6rvpy"]
+[ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="2_70olc"]
+[ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="3_yxhpw"]
+
+[sub_resource type="Animation" id="Animation_70olc"]
+resource_name = "intro"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yxhpw"]
+_data = {
+&"intro": SubResource("Animation_70olc")
+}
+
+[node name="TutorialLevel" type="Node2D" unique_id=1421846376]
+script = ExtResource("1_6rvpy")
+
+[node name="Background" type="ColorRect" parent="." unique_id=289879708]
+custom_minimum_size = Vector2(160, 140)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+
+[node name="StartButton" parent="." unique_id=1940137882 instance=ExtResource("2_70olc")]
+offset_left = 56.0
+offset_top = 118.0
+offset_right = 106.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("3_yxhpw")
+theme_override_font_sizes/font_size = 8
+text = "Start Work"
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=183819864]
+libraries/ = SubResource("AnimationLibrary_yxhpw")
