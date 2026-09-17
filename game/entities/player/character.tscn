@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
-size = Vector2(2, 6)
+size = Vector2(2, 3)
 
 [node name="Character" type="CharacterBody2D" unique_id=1965871390]
 motion_mode = 1
@@ -73,4 +73,5 @@ animation = &"idle"
 frame_progress = 0.6129974
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513910839]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_c3t6r")

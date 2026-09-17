@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c52rhil7tl0ms"]
+
+[ext_resource type="Texture2D" uid="uid://b0cave502f6xm" path="res://assets/factory/ore.png" id="1_td8ob"]
+[ext_resource type="Script" uid="uid://beipa4r61avyg" path="res://game/ore/ore_scene.gd" id="2_2bnr3"]
+
+[node name="OreScene" type="Sprite2D" unique_id=270619635]
+texture = ExtResource("1_td8ob")
+script = ExtResource("2_2bnr3")

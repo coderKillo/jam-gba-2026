@@ -1,10 +1,17 @@
 class_name Character
 extends CharacterBody2D
 
+signal area_changed(new_area: String)
+
 @export var speed = 300.0
 @export var jump_velocity = -400.0
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+
+var area: String = "":
+	set(value):
+		area = value
+		area_changed.emit(area)
 
 
 func _physics_process(delta):

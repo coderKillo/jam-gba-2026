@@ -6,8 +6,15 @@
 [ext_resource type="Script" uid="uid://c4wcuhr0mrxdh" path="res://game/entities/gun.gd" id="6_6icyu"]
 [ext_resource type="Texture2D" uid="uid://d1tui35i4aprj" path="res://assets/factory/belt-sheet.png" id="6_ma400"]
 [ext_resource type="Texture2D" uid="uid://fxexotcpflqr" path="res://assets/factory/gun-sheet.png" id="6_ociif"]
+[ext_resource type="Script" uid="uid://c6bfnexwv1nuu" path="res://game/ore/conveyor_belt.gd" id="6_x0q8c"]
 [ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="7_ociif"]
 [ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="8_6icyu"]
+[ext_resource type="Script" uid="uid://cuampjpf6mlk4" path="res://game/ore/ore_spawner.gd" id="8_ugwa6"]
+[ext_resource type="Texture2D" uid="uid://0m5c3102vytt" path="res://assets/factory/dirt-cells.png" id="10_3p8nd"]
+[ext_resource type="Script" uid="uid://c53fuocc7nloq" path="res://game/ore/ore_viewer.gd" id="10_bicih"]
+[ext_resource type="Texture2D" uid="uid://0bxgwbs81wu6" path="res://assets/factory/selector-sheet.png" id="12_w3pcb"]
+[ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="13_cyqf4"]
+[ext_resource type="Script" uid="uid://uei1h0q8m1yr" path="res://game/factory/areas.gd" id="14_ax4ej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
 size = Vector2(161, 46)
@@ -115,10 +122,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ki"]
+atlas = ExtResource("12_w3pcb")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jeu6"]
+atlas = ExtResource("12_w3pcb")
+region = Rect2(31, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjp0b"]
+atlas = ExtResource("12_w3pcb")
+region = Rect2(62, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gygrg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jeu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjp0b")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
 size = Vector2(10.25, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dgia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyqf4"]
+size = Vector2(17, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax4ej"]
+size = Vector2(12, 12)
 
 [node name="MainScene" type="Control" unique_id=1643110070 node_paths=PackedStringArray("level_container", "gui")]
 layout_mode = 3
@@ -132,6 +174,20 @@ theme = ExtResource("1_6lyvc")
 script = ExtResource("1_awp0h")
 level_container = NodePath("World")
 gui = NodePath("CanvasLayer/Gui")
+
+[node name="Background2" type="ColorRect" parent="." unique_id=168167943]
+custom_minimum_size = Vector2(160, 140)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -65.0
+offset_right = 87.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
 [node name="Background" type="TextureRect" parent="." unique_id=575462685]
 layout_mode = 0
@@ -180,6 +236,25 @@ position = Vector2(-400, -103)
 sprite_frames = SubResource("SpriteFrames_c3t6r")
 autoplay = "default"
 frame_progress = 0.29356936
+script = ExtResource("6_x0q8c")
+
+[node name="OreSpawner" type="Node2D" parent="World/ConveyorBelt" unique_id=60801248]
+position = Vector2(0, 66)
+script = ExtResource("8_ugwa6")
+
+[node name="Cover" type="ColorRect" parent="World/ConveyorBelt" unique_id=536868742]
+offset_left = -8.0
+offset_top = 59.0
+offset_right = 8.0
+offset_bottom = 79.0
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+
+[node name="Cover2" type="ColorRect" parent="World/ConveyorBelt" unique_id=1419240421]
+offset_left = -8.0
+offset_top = -90.0
+offset_right = 8.0
+offset_bottom = -70.0
+color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
 [node name="ShopBlocker" type="StaticBody2D" parent="World" unique_id=931035213]
 position = Vector2(-432, -115)
@@ -214,27 +289,163 @@ closed = true
 width = 1.0
 default_color = Color(0.99607843, 0.8156863, 0.09411765, 1)
 
-[node name="Triggers" type="Node2D" parent="." unique_id=265691375]
+[node name="OreViewer" type="Node2D" parent="." unique_id=76805452]
+position = Vector2(76, 48)
+script = ExtResource("10_bicih")
 
-[node name="ExitTrigger" type="Area2D" parent="Triggers" unique_id=547724127]
-unique_name_in_owner = true
+[node name="Cells" type="Node2D" parent="OreViewer" unique_id=1241786080]
+
+[node name="Cell1" type="Sprite2D" parent="OreViewer/Cells" unique_id=1667304999]
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell2" type="Sprite2D" parent="OreViewer/Cells" unique_id=1484740327]
+position = Vector2(27, 0)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell3" type="Sprite2D" parent="OreViewer/Cells" unique_id=1968423011]
+position = Vector2(54, 0)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell4" type="Sprite2D" parent="OreViewer/Cells" unique_id=2093964963]
+position = Vector2(0.5, 26.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell5" type="Sprite2D" parent="OreViewer/Cells" unique_id=1871991066]
+position = Vector2(27.5, 26.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell6" type="Sprite2D" parent="OreViewer/Cells" unique_id=1147312792]
+position = Vector2(54.5, 26.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell7" type="Sprite2D" parent="OreViewer/Cells" unique_id=1997105936]
+position = Vector2(0.5, 53.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell8" type="Sprite2D" parent="OreViewer/Cells" unique_id=1285248842]
+position = Vector2(27.5, 53.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Cell9" type="Sprite2D" parent="OreViewer/Cells" unique_id=2052499119]
+position = Vector2(54.5, 53.5)
+texture = ExtResource("10_3p8nd")
+hframes = 3
+
+[node name="Selector" type="AnimatedSprite2D" parent="OreViewer" unique_id=1476200659]
+sprite_frames = SubResource("SpriteFrames_gygrg")
+autoplay = "default"
+frame_progress = 0.58130145
+
+[node name="Label" type="Label" parent="OreViewer" unique_id=2070619606]
+offset_left = -12.0
+offset_top = 69.0
+offset_right = 66.0
+offset_bottom = 84.0
+theme = ExtResource("1_6lyvc")
+text = "[L] select   [K] Drop"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=136718884]
+position = Vector2(80, 72)
+script = ExtResource("13_cyqf4")
+
+[node name="Areas" type="Node2D" parent="." unique_id=265691375]
+script = ExtResource("14_ax4ej")
+
+[node name="Exit" type="Area2D" parent="Areas" unique_id=547724127]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ExitTrigger" unique_id=423102134]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Exit" unique_id=423102134]
 position = Vector2(10, 2)
 shape = SubResource("RectangleShape2D_c3t6r")
 
-[node name="ShopTrigger" type="Area2D" parent="Triggers" unique_id=734911981]
-unique_name_in_owner = true
+[node name="Shop" type="Area2D" parent="Areas" unique_id=734911981]
 position = Vector2(-7, 60)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/ShopTrigger" unique_id=1074854234]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Shop" unique_id=1074854234]
 shape = SubResource("RectangleShape2D_0dgia")
+
+[node name="Workbench" type="Area2D" parent="Areas" unique_id=775115564]
+position = Vector2(13, 133)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Workbench" unique_id=1942133296]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_cyqf4")
+
+[node name="Slot1" type="Area2D" parent="Areas" unique_id=1393253877]
+position = Vector2(15, 28)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot1" unique_id=1386449301]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
+
+[node name="Slot2" type="Area2D" parent="Areas" unique_id=1304853391]
+position = Vector2(15, 44)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot2" unique_id=2135621884]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
+
+[node name="Slot3" type="Area2D" parent="Areas" unique_id=1761392739]
+position = Vector2(15, 60)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot3" unique_id=2125110983]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
+
+[node name="Slot4" type="Area2D" parent="Areas" unique_id=258922045]
+position = Vector2(15, 76)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot4" unique_id=587434253]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
+
+[node name="Slot5" type="Area2D" parent="Areas" unique_id=455201663]
+position = Vector2(15, 92)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot5" unique_id=2102052079]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
+
+[node name="Slot6" type="Area2D" parent="Areas" unique_id=236394805]
+position = Vector2(15, 108)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Slot6" unique_id=1462649212]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ax4ej")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=904130412]
 layer = 2
