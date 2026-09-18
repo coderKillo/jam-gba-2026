@@ -26,8 +26,20 @@ func empty(pos: Vector2i) -> bool:
 	return height[pos.x][pos.y] < 1
 
 
-func dig(pos: Vector2i):
+func mine(pos: Vector2i):
 	height[pos.x][pos.y] -= 1
+
+
+func paint(pos: Vector2i):
+	var h = height[pos.x][pos.y]
+	cells[pos.x][pos.y][h - 1] = CELL.GOLD
+
+
+func is_broken() -> bool:
+	var stack_to_break = Global.STACK_EMPTY_TO_BREAK
+	if Items.is_active(Items.Type.GLUE):
+		stack_to_break += 2
+	return empty_stack_count() >= stack_to_break
 
 
 func empty_stack_count() -> int:

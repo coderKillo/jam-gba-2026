@@ -29,6 +29,7 @@ AppConfig="*res://base/autoload/app_config.gd"
 Screenshot="*res://base/autoload/screenshot.gd"
 AnimationController="*res://base/autoload/animation_controller.gd"
 GlobalResources="*uid://cvhmwfqlbermr"
+Items="*uid://b07f7sjhwreo5"
 
 [display]
 

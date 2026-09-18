@@ -1,10 +1,10 @@
 class_name Gun
 extends Node2D
 
-enum Mode { IDLE, DRIVE_TO_INDEX, FOLLOW_CHARACTER, FIRE }
+enum Mode { IDLE, DRIVE_TO_INDEX, FOLLOW_CHARACTER, FIRE, DEFECT }
 
 @export var offset := 16
-@export var drive_time := 0.5
+@export var drive_time := 0.3
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
 @onready var _projectile: Line2D = $Sprite/Projectile
@@ -21,11 +21,18 @@ func move_to_index(index: int) -> void:
 
 	_current_mode = Mode.DRIVE_TO_INDEX
 
+	var distance = (offset * index) - _sprite.position.y
 	var tween := get_tree().create_tween()
 	(
 		tween
-		. tween_property(_sprite, "position:y", offset * index, drive_time)
-		. set_trans(Tween.TRANS_BOUNCE)
+		. tween_property(_sprite, "position:y", _sprite.position.y + distance * 0.7, drive_time)
+		. set_trans(Tween.TRANS_QUAD)
+		. set_ease(Tween.EASE_IN)
+	)
+	(
+		tween
+		. tween_property(_sprite, "position:y", _sprite.position.y + distance, drive_time)
+		. set_trans(Tween.TRANS_ELASTIC)
 		. set_ease(Tween.EASE_OUT)
 	)
 	await tween.finished
@@ -34,6 +41,13 @@ func move_to_index(index: int) -> void:
 
 
 func _process(_delta):
+	if Items.is_active(Items.Type.WRENCH):
+		_sprite.global_position.y = lerp(_sprite.global_position.y, offset / 2.0, 0.1)
+		_sprite.rotation_degrees = 90.0
+		return
+
+	_sprite.rotation_degrees = 0.0
+
 	if _current_mode != Mode.FOLLOW_CHARACTER or not is_instance_valid(_follow):
 		return
 
@@ -45,6 +59,7 @@ func _process(_delta):
 func follow_character(character: Character) -> void:
 	_current_mode = Mode.FOLLOW_CHARACTER
 	_waring.show()
+	await get_tree().create_timer(0.5).timeout
 	_follow = character
 
 

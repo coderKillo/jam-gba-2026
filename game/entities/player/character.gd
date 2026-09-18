@@ -2,6 +2,7 @@ class_name Character
 extends CharacterBody2D
 
 signal area_changed(new_area: String)
+signal collide_with_character(character: Character)
 
 @export var speed = 300.0
 @export var jump_velocity = -400.0
@@ -12,7 +13,7 @@ signal area_changed(new_area: String)
 
 var suspicion := 0.0:
 	set(value):
-		suspicion = value
+		suspicion = clampf(value, 0.0, 100.0)
 		suspicion_bar.visible = suspicion > 0.0
 		suspicion_bar.value = suspicion
 
@@ -21,20 +22,10 @@ var area: String = "":
 		area = value
 		area_changed.emit(area)
 
-var _suspicion_decay_timer := 1.0
-
 
 func _ready():
 	if outline:
 		animation.material.set_shader_parameter("thickness", 1.0)
-
-
-func _process(delta):
-	_suspicion_decay_timer -= delta
-	if _suspicion_decay_timer <= 0.0:
-		suspicion -= Global.SUSPICION_DECAY_PER_SEC
-		suspicion = clampf(suspicion, 0.0, 100.0)
-		_suspicion_decay_timer = 1.0
 
 
 func _physics_process(delta):
@@ -45,6 +36,12 @@ func _physics_process(delta):
 			velocity.y = lerp(velocity.y, 0.1, delta)
 
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var character = collision.get_collider() as Character
+		if character:
+			collide_with_character.emit(character)
 
 
 func move(direction: Vector2):

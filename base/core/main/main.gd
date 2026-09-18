@@ -7,11 +7,11 @@ enum Mode { MOVE, VIEW_ORE, SELECT_ITEM }
 @export var gui: Control
 
 @export_category("Timers")
-@export var gun_move_interval := 2.0
-@export var ore_spawn_interval := 2.0
+@export var gun_move_interval := 1.0
 
 @onready var player: Player = $World/Player
-@onready var viewer: OreViewer = $OreViewer
+@onready var ore_viewer: OreViewer = $OreViewer
+@onready var shop_viewer: ShopViewer = $Shop
 @onready var conveyor: ConveyorBelt = $World/ConveyorBelt
 @onready var coworker_group: Node2D = $World/CoworkerGroup
 @onready var gun: Gun = $World/Gun
@@ -20,7 +20,6 @@ enum Mode { MOVE, VIEW_ORE, SELECT_ITEM }
 @onready var view_label: Label = $CanvasLayer/Gui/ButtonLabel
 
 var _gun_move_timer := 0.0
-var _ore_spawn_timer := 0.0
 var _check_index := 0
 var _current_mode := Mode.MOVE:
 	set(value):
@@ -54,51 +53,54 @@ func _process(delta):
 		_on_gun_move_timer_timeout()
 		_gun_move_timer = gun_move_interval
 
-	_ore_spawn_timer -= delta
-	if _ore_spawn_timer <= 0.0:
-		_on_spawn_ore_timer_timeout()
-		_ore_spawn_timer = ore_spawn_interval
-
 
 func _on_move(direction: Vector2):
 	match _current_mode:
 		Mode.MOVE:
 			player.move(direction)
 		Mode.VIEW_ORE:
-			viewer.move(direction)
+			ore_viewer.move(direction)
 		Mode.SELECT_ITEM:
-			viewer.move(direction)
+			shop_viewer.move(direction)
 
 
 func _on_select():
 	match _current_mode:
 		Mode.VIEW_ORE:
-			_current_ore = player.interact(_current_ore, viewer)
+			_current_ore = player.interact(_current_ore, ore_viewer)
 			if not _current_ore:
 				_current_mode = Mode.MOVE
-				viewer.reset()
+				ore_viewer.reset()
+
+		Mode.SELECT_ITEM:
+			var item := shop_viewer.selected_cell() as ItemCell
+			if item.cost > GameState.gold:
+				return
+			GameState.gold -= item.cost
+			Items.set_item(item.item_type)
 
 
 func _on_interact():
 	match _current_mode:
 		Mode.VIEW_ORE:
 			_current_mode = Mode.MOVE
+			player.suspicion -= Global.SUSPICION_DECAY_PROCESS_ORE
 			conveyor.put_ore(_current_ore, player.slot())
-			viewer.reset()
+			ore_viewer.reset()
 
 		Mode.SELECT_ITEM:
 			_current_mode = Mode.MOVE
-			viewer.reset()
+			shop_viewer.reset()
 
 		Mode.MOVE:
 			if player.area == "Workbench":
 				_current_mode = Mode.SELECT_ITEM
+				shop_viewer.display()
 
 			if player.area.match("Slot?"):
 				_current_mode = Mode.VIEW_ORE
 				_current_ore = Ore.create_random()
-
-				viewer.display_ore(_current_ore)
+				ore_viewer.display_ore(_current_ore)
 
 
 func _on_ore_entered_slot(ore: Ore, id: int):
@@ -109,6 +111,7 @@ func _on_ore_entered_slot(ore: Ore, id: int):
 		conveyor.take_ore(ore)
 		ore = coworker.inspect(ore)
 		if ore:
+			coworker.suspicion -= Global.SUSPICION_DECAY_PROCESS_ORE
 			conveyor.put_ore(ore, id)
 
 
@@ -123,6 +126,9 @@ func _on_player_area_changed(area: String):
 func _on_gun_move_timer_timeout():
 	player.gun_checking = false
 
+	if Items.is_active(Items.Type.WRENCH):
+		return
+
 	_check_index %= 6
 	_check_index += 1
 
@@ -130,8 +136,11 @@ func _on_gun_move_timer_timeout():
 
 	for child in coworker_group.get_children():
 		var coworker := child as Coworker
+		if _check_index == coworker.id and not coworker.working:
+			coworker.suspicion += Global.SUSPICION_PLAYER_NOT_ON_SLOT
 		if coworker.suspicion >= Global.SUSPICION_TRESHOLD:
 			gun.follow_character(coworker)
+			return
 
 	if _check_index == Global.PLAYER_INDEX:
 		player.gun_checking = true
@@ -140,20 +149,25 @@ func _on_gun_move_timer_timeout():
 
 	if player.suspicion >= Global.SUSPICION_TRESHOLD:
 		gun.follow_character(player)
-
-
-func _on_spawn_ore_timer_timeout():
-	# no ore spawn
-	pass
+		return
 
 
 func _update_view_label():
 	if _current_mode == Mode.VIEW_ORE:
 		view_label.show()
-		view_label.text = "[K] dig   [L] drop"
+		if Items.is_active(Items.Type.BRUSH):
+			view_label.text = "[K] paint   [L] drop"
+		else:
+			view_label.text = "[K] mine   [L] drop"
+	elif _current_mode == Mode.SELECT_ITEM:
+		view_label.show()
+		view_label.text = "[K] buy   [L] close"
 	elif _current_mode == Mode.MOVE and player.is_on_slot():
 		view_label.show()
 		view_label.text = "[L] pick up ore"
+	elif _current_mode == Mode.MOVE and player.area == "Workbench":
+		view_label.show()
+		view_label.text = "[L] open workbench"
 	else:
 		view_label.hide()
 

@@ -41,6 +41,7 @@ static func create_shake_tween(node: Node, intensity: float) -> Tween:
 
 static func create_fade_in_out_tween(node: CanvasItem, fade_in: float, fade_out: float) -> Tween:
 	var tween = node.get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	(
 		tween
 		. tween_property(

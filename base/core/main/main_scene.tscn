@@ -18,7 +18,12 @@
 [ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="13_cyqf4"]
 [ext_resource type="PackedScene" uid="uid://dl6nm5xrb6r25" path="res://game/ore/ore_viewer_cell.tscn" id="14_4jeu6"]
 [ext_resource type="Script" uid="uid://uei1h0q8m1yr" path="res://game/factory/areas.gd" id="14_ax4ej"]
+[ext_resource type="Script" uid="uid://r42j6ws3jsxh" path="res://game/shop/shop.gd" id="16_b46tn"]
+[ext_resource type="Texture2D" uid="uid://drlv5w1vahm3m" path="res://assets/factory/items-sheet.png" id="17_c8pys"]
+[ext_resource type="Script" uid="uid://cxx0onmcmublt" path="res://game/shop/shop_cell.gd" id="17_l3rmk"]
 [ext_resource type="PackedScene" uid="uid://qclmghaee000" path="res://game/gui/gold_label.tscn" id="18_gjp0b"]
+[ext_resource type="Texture2D" uid="uid://s45in7acrvv0" path="res://assets/gui_assets/art/GuiTexture.tres" id="19_eb0yd"]
+[ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="20_htuni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
 size = Vector2(161, 46)
@@ -198,6 +203,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57fuq"]
+texture = ExtResource("19_eb0yd")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(7, 37, 5, 5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
 size = Vector2(10.25, 12)
 
@@ -258,7 +271,7 @@ position = Vector2(16, -83)
 shape = SubResource("RectangleShape2D_dn4rf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/WorldBorders" unique_id=676189804]
-position = Vector2(0, 92)
+position = Vector2(0, 88)
 shape = SubResource("RectangleShape2D_dn4rf")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/WorldBorders" unique_id=1150811698]
@@ -304,6 +317,13 @@ offset_top = -90.0
 offset_right = 141.0
 offset_bottom = -70.0
 color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+
+[node name="Cover3" type="ColorRect" parent="World/ConveyorBelt" unique_id=1465666196]
+offset_left = -4.0
+offset_top = -70.0
+offset_right = 4.0
+offset_bottom = -68.0
+color = Color(0.36862746, 0.07058824, 0.0627451, 1)
 
 [node name="ShopBlocker" type="StaticBody2D" parent="World" unique_id=931035213]
 position = Vector2(-432, -115)
@@ -358,22 +378,27 @@ position = Vector2(-411, -163)
 
 [node name="Slot1" parent="World/CoworkerGroup" unique_id=842245207 instance=ExtResource("10_0h0lk")]
 position = Vector2(0, 16)
+collision_layer = 1
 id = 1
 
 [node name="Slot2" parent="World/CoworkerGroup" unique_id=791755630 instance=ExtResource("10_0h0lk")]
 position = Vector2(0, 32)
+collision_layer = 1
 id = 2
 
 [node name="Slot3" parent="World/CoworkerGroup" unique_id=1217766374 instance=ExtResource("10_0h0lk")]
 position = Vector2(0, 48)
+collision_layer = 1
 id = 3
 
 [node name="Slot4" parent="World/CoworkerGroup" unique_id=1113624224 instance=ExtResource("10_0h0lk")]
 position = Vector2(0, 64)
+collision_layer = 1
 id = 4
 
 [node name="Slot5" parent="World/CoworkerGroup" unique_id=1499474894 instance=ExtResource("10_0h0lk")]
 position = Vector2(0, 80)
+collision_layer = 1
 id = 5
 
 [node name="OreViewer" type="Node2D" parent="." unique_id=76805452]
@@ -413,6 +438,137 @@ position = Vector2(54.5, 54.5)
 sprite_frames = SubResource("SpriteFrames_gygrg")
 autoplay = "default"
 frame_progress = 0.58130145
+
+[node name="Shop" type="Node2D" parent="." unique_id=2111966093]
+position = Vector2(76, 71)
+script = ExtResource("16_b46tn")
+
+[node name="Cells" type="Node2D" parent="Shop" unique_id=1364361481]
+
+[node name="Cell1" parent="Shop/Cells" unique_id=60067431 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 0.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+script = ExtResource("17_l3rmk")
+item_type = 0
+cost = 10
+description = "Screwdriver: 
+Mining single cells  for 15s"
+
+[node name="Cell2" parent="Shop/Cells" unique_id=2030594395 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 0.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 1
+script = ExtResource("17_l3rmk")
+item_type = 3
+cost = 10
+description = "Goggles: 
+Allow seeing ore block depth  for 15s"
+
+[node name="Cell3" parent="Shop/Cells" unique_id=1871753515 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 0.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 2
+script = ExtResource("17_l3rmk")
+item_type = 5
+cost = 10
+description = "Brush:
+Paint the next mined cell gold."
+
+[node name="Cell4" parent="Shop/Cells" unique_id=1311273229 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 27.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 3
+script = ExtResource("17_l3rmk")
+item_type = 2
+cost = 10
+description = "Glue: 
+Increase ore block stability by 2  for 15s"
+
+[node name="Cell5" parent="Shop/Cells" unique_id=1879885101 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 27.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 4
+script = ExtResource("17_l3rmk")
+item_type = 4
+cost = 10
+description = "Wrench:
+Disable gun  for 15s"
+
+[node name="Cell6" parent="Shop/Cells" unique_id=2024387670 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 27.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 5
+script = ExtResource("17_l3rmk")
+item_type = 1
+cost = 10
+description = "Gloves:
+knocks a worker unconscious when walk over him."
+
+[node name="Cell7" parent="Shop/Cells" unique_id=1337244037 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 54.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 6
+script = ExtResource("17_l3rmk")
+item_type = 0
+cost = 0
+description = ""
+
+[node name="Cell8" parent="Shop/Cells" unique_id=626383544 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 54.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 6
+script = ExtResource("17_l3rmk")
+item_type = 0
+cost = 0
+description = ""
+
+[node name="Cell9" parent="Shop/Cells" unique_id=863154186 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 54.5)
+texture = ExtResource("17_c8pys")
+hframes = 9
+frame = 6
+script = ExtResource("17_l3rmk")
+item_type = 0
+cost = 0
+description = ""
+
+[node name="Selector" type="AnimatedSprite2D" parent="Shop" unique_id=219123212]
+sprite_frames = SubResource("SpriteFrames_gygrg")
+autoplay = "default"
+frame_progress = 0.58130145
+
+[node name="Panel" type="Panel" parent="Shop" unique_id=462275410]
+offset_left = -15.0
+offset_top = -58.0
+offset_right = 74.575
+offset_bottom = -18.0
+theme = ExtResource("1_6lyvc")
+theme_override_styles/panel = SubResource("StyleBoxTexture_57fuq")
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Shop/Panel" unique_id=542491169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -1.574997
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+theme_override_fonts/normal_font = ExtResource("20_htuni")
+theme_override_font_sizes/normal_font_size = 8
+text = "This is a longer text I Want to test how long adescroption can be and itss a lot of chara"
+scroll_active = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=136718884]
 position = Vector2(80, 72)
@@ -530,7 +686,7 @@ offset_right = 142.0
 offset_bottom = 132.0
 theme = ExtResource("1_6lyvc")
 theme_override_constants/outline_size = 4
-text = "[L] Dig   [K] Put on belt"
+text = "[L] Dig   [K] Put"
 
 [node name="GoldLabel" parent="CanvasLayer/Gui" unique_id=1141422414 instance=ExtResource("18_gjp0b")]
 layout_mode = 0
