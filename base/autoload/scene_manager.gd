@@ -52,6 +52,7 @@ func load_main_menu():
 
 func reload_level():
 	if SINGLE_GAME_SCENE:
+		GameState.reset()
 		load_game_scene()
 		return
 

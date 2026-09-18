@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dnwfiiftf703c" path="res://game/entities/player/character.gd" id="1_qrq2s"]
 [ext_resource type="Texture2D" uid="uid://c4gbhp32jxf1k" path="res://assets/player/player-sheet.png" id="1_w2hoi"]
+[ext_resource type="Shader" uid="uid://bp0j52avs061x" path="res://assets/shaders/outline.gdshader" id="2_wre7n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ax4ej"]
+resource_local_to_scene = true
+shader = ExtResource("2_wre7n")
+shader_parameter/clr = Color(0.99607843, 0.8156863, 0.09411765, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrq2s"]
 atlas = ExtResource("1_w2hoi")
@@ -61,17 +69,41 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
 size = Vector2(2, 3)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3t6r"]
+bg_color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dgia"]
+bg_color = Color(0.99607843, 0.8156863, 0.09411765, 1)
+
 [node name="Character" type="CharacterBody2D" unique_id=1965871390]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_qrq2s")
 speed = 100.0
 jump_velocity = -150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130268459]
+material = SubResource("ShaderMaterial_ax4ej")
 sprite_frames = SubResource("SpriteFrames_c3t6r")
 animation = &"idle"
-frame_progress = 0.6129974
+frame_progress = 0.3132531
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513910839]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_c3t6r")
+
+[node name="SuspicionBar" type="ProgressBar" parent="." unique_id=389983400]
+visible = false
+z_index = 1
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 5.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c3t6r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0dgia")
+step = 10.0
+show_percentage = false

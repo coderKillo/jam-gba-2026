@@ -27,10 +27,9 @@ texture = ExtResource("2_3e8fi")
 
 [node name="Player" parent="." unique_id=1965871390 instance=ExtResource("3_8yr2k")]
 position = Vector2(17, 94)
-collision_layer = 3
+collision_layer = 2
 motion_mode = 0
-speed = 100.0
-jump_velocity = -150.0
+speed = 30.0
 
 [node name="InputManager" type="Node2D" parent="." unique_id=1989236659]
 script = ExtResource("3_3e8fi")

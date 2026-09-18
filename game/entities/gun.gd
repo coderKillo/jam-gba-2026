@@ -8,6 +8,8 @@ enum Mode { IDLE, DRIVE_TO_INDEX, FOLLOW_CHARACTER, FIRE }
 
 @onready var _sprite: AnimatedSprite2D = $Sprite
 @onready var _projectile: Line2D = $Sprite/Projectile
+@onready var _waring: AnimatedSprite2D = $Sprite/Warning
+@onready var _flash_overlay: ColorRect = $FlashOverlay
 
 var _current_mode := Mode.IDLE
 var _follow: Character
@@ -42,6 +44,7 @@ func _process(_delta):
 
 func follow_character(character: Character) -> void:
 	_current_mode = Mode.FOLLOW_CHARACTER
+	_waring.show()
 	_follow = character
 
 
@@ -54,11 +57,12 @@ func _shot():
 	_sprite.play("fire")
 
 	var tween := get_tree().create_tween()
-	tween.tween_callback(func(): _follow.shot())
 	tween.tween_callback(func(): _sprite.play("fire"))
 	tween.tween_interval(0.1)
 	tween.tween_callback(func(): _projectile.show())
+	tween.tween_callback(func(): TweenAnimation.create_fade_in_out_tween(_flash_overlay, 0.1, 0.2))
 	tween.tween_interval(0.3)
+	tween.tween_callback(func(): _follow.shot())
 	tween.tween_callback(func(): _projectile.hide())
 	tween.tween_await(_sprite.animation_finished)
 	tween.tween_callback(func(): _sprite.play("idle"))
@@ -66,3 +70,4 @@ func _shot():
 
 	_current_mode = Mode.IDLE
 	_follow = null
+	_waring.hide()

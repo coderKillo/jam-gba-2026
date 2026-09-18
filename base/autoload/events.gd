@@ -9,3 +9,9 @@ signal popup_text(text: String, pos: Vector2, color: Color)
 signal camera_shake(intensity: float)
 
 signal play_sound(sound: int)
+
+signal gold_changed
+
+signal coworkers_changed
+
+signal items_changed

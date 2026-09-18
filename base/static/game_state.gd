@@ -6,6 +6,22 @@ const NO_VERSION_NAME = "0.0.0"
 
 static var current: GameData
 
+static var gold: int:
+	set(value):
+		current.gold = value
+		save()
+		Events.gold_changed.emit()
+	get:
+		return current.gold
+
+static var coworkers: int:
+	set(value):
+		current.coworkers = value
+		save()
+		Events.coworkers_chaned.emit()
+	get:
+		return current.coworkers
+
 
 static func _log_version() -> void:
 	var current_version = ProjectSettings.get_setting("application/config/version", NO_VERSION_NAME)
@@ -61,6 +77,18 @@ static func set_current_level(level_number: int) -> void:
 	current.max_level_reached = max(level_number, current.max_level_reached)
 	current.current_level = level_number
 	save()
+
+
+static func add_item(item: String):
+	if item in current.items:
+		return
+	current.items.append(item)
+	Events.items_changed.emit()
+	save()
+
+
+static func has_item(item: String) -> bool:
+	return item in current.items
 
 
 static func start_game() -> void:

@@ -14,10 +14,6 @@ signal enter_slot(ore: Ore, id: int)
 var _timer := 0.0
 
 
-func _ready():
-	spawner.spawn(Ore.new())
-
-
 func _process(delta):
 	_timer -= delta
 	if _timer < 0.0:
@@ -31,7 +27,7 @@ func take_ore(ore: Ore):
 
 
 func put_ore(ore: Ore, id: int):
-	spawner.spawn(ore, _get_offset(id))
+	spawner.spawn(ore, _get_position(id))
 
 
 func _check_slot():
@@ -43,5 +39,6 @@ func _check_slot():
 			enter_slot.emit(ore.data, id)
 
 
-func _get_offset(id: int):
-	return Vector2(0.0, slot_offset + (slot_space * id))
+func _get_position(id: int):
+	var _offset = Vector2(0.0, slot_offset + (slot_space * id))
+	return global_position + _offset

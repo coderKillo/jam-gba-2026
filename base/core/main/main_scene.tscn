@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_6lyvc"]
 [ext_resource type="Script" uid="uid://xwkwmj6gqkg7" path="res://base/core/main/main.gd" id="1_awp0h"]
 [ext_resource type="Texture2D" uid="uid://dmpic5d7a6p0b" path="res://assets/factory/background.png" id="4_6lyvc"]
+[ext_resource type="Script" uid="uid://q3b5pr5ohca2" path="res://game/entities/player/player.gd" id="5_oh5ki"]
 [ext_resource type="Script" uid="uid://c4wcuhr0mrxdh" path="res://game/entities/gun.gd" id="6_6icyu"]
 [ext_resource type="Texture2D" uid="uid://d1tui35i4aprj" path="res://assets/factory/belt-sheet.png" id="6_ma400"]
 [ext_resource type="Texture2D" uid="uid://fxexotcpflqr" path="res://assets/factory/gun-sheet.png" id="6_ociif"]
@@ -10,11 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="7_ociif"]
 [ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="8_6icyu"]
 [ext_resource type="Script" uid="uid://cuampjpf6mlk4" path="res://game/ore/ore_spawner.gd" id="8_ugwa6"]
-[ext_resource type="Texture2D" uid="uid://0m5c3102vytt" path="res://assets/factory/dirt-cells.png" id="10_3p8nd"]
+[ext_resource type="PackedScene" uid="uid://dwwtgy7ux1k6n" path="res://game/entities/coworker/coworker.tscn" id="10_0h0lk"]
 [ext_resource type="Script" uid="uid://c53fuocc7nloq" path="res://game/ore/ore_viewer.gd" id="10_bicih"]
+[ext_resource type="Texture2D" uid="uid://ba2r2keuxllcg" path="res://assets/factory/warning-sheet.png" id="11_4jeu6"]
 [ext_resource type="Texture2D" uid="uid://0bxgwbs81wu6" path="res://assets/factory/selector-sheet.png" id="12_w3pcb"]
 [ext_resource type="Script" uid="uid://cxv70wg3ahm0y" path="res://base/2d/camera/camera_2d.gd" id="13_cyqf4"]
+[ext_resource type="PackedScene" uid="uid://dl6nm5xrb6r25" path="res://game/ore/ore_viewer_cell.tscn" id="14_4jeu6"]
 [ext_resource type="Script" uid="uid://uei1h0q8m1yr" path="res://game/factory/areas.gd" id="14_ax4ej"]
+[ext_resource type="PackedScene" uid="uid://qclmghaee000" path="res://game/gui/gold_label.tscn" id="18_gjp0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
 size = Vector2(161, 46)
@@ -120,6 +124,49 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es3kw"]
+atlas = ExtResource("11_4jeu6")
+region = Rect2(0, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b46tn"]
+atlas = ExtResource("11_4jeu6")
+region = Rect2(8, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3rmk"]
+atlas = ExtResource("11_4jeu6")
+region = Rect2(16, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8pys"]
+atlas = ExtResource("11_4jeu6")
+region = Rect2(24, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb0yd"]
+atlas = ExtResource("11_4jeu6")
+region = Rect2(32, 0, 8, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_triso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es3kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b46tn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3rmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8pys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb0yd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oh5ki"]
@@ -228,8 +275,10 @@ shape = SubResource("RectangleShape2D_ociif")
 
 [node name="Player" parent="World" unique_id=1965871390 instance=ExtResource("7_ociif")]
 position = Vector2(-415, -67)
-collision_layer = 3
+collision_layer = 2
+script = ExtResource("5_oh5ki")
 speed = 50.0
+outline = true
 
 [node name="ConveyorBelt" type="AnimatedSprite2D" parent="World" unique_id=1960484822]
 position = Vector2(-400, -103)
@@ -250,9 +299,9 @@ offset_bottom = 79.0
 color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
 [node name="Cover2" type="ColorRect" parent="World/ConveyorBelt" unique_id=1419240421]
-offset_left = -8.0
+offset_left = -34.0
 offset_top = -90.0
-offset_right = 8.0
+offset_right = 141.0
 offset_bottom = -70.0
 color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
@@ -289,68 +338,81 @@ closed = true
 width = 1.0
 default_color = Color(0.99607843, 0.8156863, 0.09411765, 1)
 
+[node name="Warning" type="AnimatedSprite2D" parent="World/Gun/Sprite" unique_id=441600284]
+visible = false
+position = Vector2(-5, -8)
+sprite_frames = SubResource("SpriteFrames_triso")
+autoplay = "default"
+frame_progress = 0.475106
+
+[node name="FlashOverlay" type="ColorRect" parent="World/Gun" unique_id=1873934457]
+modulate = Color(1, 1, 1, 0)
+offset_left = -49.0
+offset_top = -14.0
+offset_right = 111.0
+offset_bottom = 130.0
+color = Color(0.99607843, 0.8156863, 0.09411765, 1)
+
+[node name="CoworkerGroup" type="Node2D" parent="World" unique_id=1029655495]
+position = Vector2(-411, -163)
+
+[node name="Slot1" parent="World/CoworkerGroup" unique_id=842245207 instance=ExtResource("10_0h0lk")]
+position = Vector2(0, 16)
+id = 1
+
+[node name="Slot2" parent="World/CoworkerGroup" unique_id=791755630 instance=ExtResource("10_0h0lk")]
+position = Vector2(0, 32)
+id = 2
+
+[node name="Slot3" parent="World/CoworkerGroup" unique_id=1217766374 instance=ExtResource("10_0h0lk")]
+position = Vector2(0, 48)
+id = 3
+
+[node name="Slot4" parent="World/CoworkerGroup" unique_id=1113624224 instance=ExtResource("10_0h0lk")]
+position = Vector2(0, 64)
+id = 4
+
+[node name="Slot5" parent="World/CoworkerGroup" unique_id=1499474894 instance=ExtResource("10_0h0lk")]
+position = Vector2(0, 80)
+id = 5
+
 [node name="OreViewer" type="Node2D" parent="." unique_id=76805452]
 position = Vector2(76, 48)
 script = ExtResource("10_bicih")
 
 [node name="Cells" type="Node2D" parent="OreViewer" unique_id=1241786080]
 
-[node name="Cell1" type="Sprite2D" parent="OreViewer/Cells" unique_id=1667304999]
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell1" parent="OreViewer/Cells" unique_id=1074369174 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 0.5)
 
-[node name="Cell2" type="Sprite2D" parent="OreViewer/Cells" unique_id=1484740327]
-position = Vector2(27, 0)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell2" parent="OreViewer/Cells" unique_id=1083326575 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 0.5)
 
-[node name="Cell3" type="Sprite2D" parent="OreViewer/Cells" unique_id=1968423011]
-position = Vector2(54, 0)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell3" parent="OreViewer/Cells" unique_id=926450168 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 0.5)
 
-[node name="Cell4" type="Sprite2D" parent="OreViewer/Cells" unique_id=2093964963]
-position = Vector2(0.5, 26.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell4" parent="OreViewer/Cells" unique_id=2057688445 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 27.5)
 
-[node name="Cell5" type="Sprite2D" parent="OreViewer/Cells" unique_id=1871991066]
-position = Vector2(27.5, 26.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell5" parent="OreViewer/Cells" unique_id=1853086519 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 27.5)
 
-[node name="Cell6" type="Sprite2D" parent="OreViewer/Cells" unique_id=1147312792]
-position = Vector2(54.5, 26.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell6" parent="OreViewer/Cells" unique_id=1840155071 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 27.5)
 
-[node name="Cell7" type="Sprite2D" parent="OreViewer/Cells" unique_id=1997105936]
-position = Vector2(0.5, 53.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell7" parent="OreViewer/Cells" unique_id=1686490002 instance=ExtResource("14_4jeu6")]
+position = Vector2(0.5, 54.5)
 
-[node name="Cell8" type="Sprite2D" parent="OreViewer/Cells" unique_id=1285248842]
-position = Vector2(27.5, 53.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell8" parent="OreViewer/Cells" unique_id=1125241922 instance=ExtResource("14_4jeu6")]
+position = Vector2(27.5, 54.5)
 
-[node name="Cell9" type="Sprite2D" parent="OreViewer/Cells" unique_id=2052499119]
-position = Vector2(54.5, 53.5)
-texture = ExtResource("10_3p8nd")
-hframes = 3
+[node name="Cell9" parent="OreViewer/Cells" unique_id=1758654435 instance=ExtResource("14_4jeu6")]
+position = Vector2(54.5, 54.5)
 
 [node name="Selector" type="AnimatedSprite2D" parent="OreViewer" unique_id=1476200659]
 sprite_frames = SubResource("SpriteFrames_gygrg")
 autoplay = "default"
 frame_progress = 0.58130145
-
-[node name="Label" type="Label" parent="OreViewer" unique_id=2070619606]
-offset_left = -12.0
-offset_top = 69.0
-offset_right = 66.0
-offset_bottom = 84.0
-theme = ExtResource("1_6lyvc")
-text = "[L] select   [K] Drop"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=136718884]
 position = Vector2(80, 72)
@@ -459,6 +521,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_6lyvc")
+
+[node name="ButtonLabel" type="Label" parent="CanvasLayer/Gui" unique_id=2070619606]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 117.0
+offset_right = 142.0
+offset_bottom = 132.0
+theme = ExtResource("1_6lyvc")
+theme_override_constants/outline_size = 4
+text = "[L] Dig   [K] Put on belt"
+
+[node name="GoldLabel" parent="CanvasLayer/Gui" unique_id=1141422414 instance=ExtResource("18_gjp0b")]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 3.0
+offset_right = 128.0
+offset_bottom = 18.0
 
 [node name="Controller" type="Node" parent="." unique_id=844771318]
 

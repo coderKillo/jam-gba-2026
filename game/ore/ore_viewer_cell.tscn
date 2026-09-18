@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dl6nm5xrb6r25"]
+
+[ext_resource type="Texture2D" uid="uid://0m5c3102vytt" path="res://assets/factory/dirt-cells.png" id="1_2so34"]
+[ext_resource type="Script" uid="uid://22u2rdtrj4l2" path="res://game/ore/ore_viewer_cell.gd" id="2_bn8gi"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="2_qcx8u"]
+
+[node name="OreViewerCell" type="Sprite2D" unique_id=1074369174]
+texture = ExtResource("1_2so34")
+hframes = 3
+script = ExtResource("2_bn8gi")
+
+[node name="Label" type="Label" parent="." unique_id=2107780506]
+offset_left = -2.0
+offset_top = 8.0
+offset_right = 38.0
+offset_bottom = 23.0
+theme = ExtResource("2_qcx8u")
+text = "3"

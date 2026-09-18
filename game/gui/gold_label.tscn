@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://qclmghaee000"]
+
+[ext_resource type="Script" uid="uid://dwrwmmqgabr7" path="res://game/gui/gold_label.gd" id="1_udfao"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_wrosh"]
+
+[node name="GoldLabel" type="Label" unique_id=1141422414]
+offset_right = 40.0
+offset_bottom = 8.0
+theme = ExtResource("1_wrosh")
+text = "1 Gold"
+script = ExtResource("1_udfao")

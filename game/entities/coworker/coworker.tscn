@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dwwtgy7ux1k6n"]
+
+[ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="1_ua21o"]
+[ext_resource type="Script" uid="uid://y2khuhdq5i0u" path="res://game/entities/coworker/coworker.gd" id="2_43o03"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="3_bf0r7"]
+[ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="4_k2n3f"]
+
+[sub_resource type="Shader" id="Shader_k2n3f"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 clr : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform int type : hint_enum(\"Disable\", \"Round\", \"Square\") = 2;
+uniform float thickness = 1.0;
+
+const vec2[8] DIRECTIONS = {
+	vec2(1.0, 0.0),
+	vec2(0.0, 1.0),
+	vec2(-1.0, 0.0),
+	vec2(0.0, -1.0),
+	vec2(1.0, 1.0),
+	vec2(-1.0, 1.0),
+	vec2(-1.0, -1.0),
+	vec2(1.0, -1.0)
+};
+
+float gtz(float input) { return max(0, sign(input)); }
+// returns 1 if input > 0, else 0
+
+float check(sampler2D tex, vec2 from, vec2 size) {
+	float result = 0.0;
+	for (int i = 0; i < 4 * type; i++) {
+		result += texture(tex, from + DIRECTIONS[i] * size * thickness).a;
+	}
+	return gtz(result);
+}
+
+void fragment() {
+	COLOR = mix( COLOR, clr, check(TEXTURE, UV, TEXTURE_PIXEL_SIZE) * (1.0 - gtz(COLOR.a)) );
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqhr8"]
+resource_local_to_scene = true
+shader = SubResource("Shader_k2n3f")
+shader_parameter/clr = Color(0.99607843, 0.8156863, 0.09411765, 1)
+shader_parameter/type = 1
+shader_parameter/thickness = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u0ft"]
+bg_color = Color(0.050980393, 0.015686275, 0.019607844, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="Character" unique_id=1965871390 instance=ExtResource("1_ua21o")]
+script = ExtResource("2_43o03")
+id = 0
+speed = 300.0
+jump_velocity = -400.0
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=2130268459]
+material = SubResource("ShaderMaterial_uqhr8")
+
+[node name="SuspicionBar" parent="." index="2" unique_id=389983400]
+theme_override_styles/background = SubResource("StyleBoxFlat_4u0ft")
+
+[node name="Dialog" type="Label" parent="." index="3" unique_id=1958317278]
+visible = false
+z_index = 1
+offset_top = -7.0
+offset_right = 40.0
+offset_bottom = 8.0
+theme = ExtResource("3_bf0r7")
+theme_override_fonts/font = ExtResource("4_k2n3f")
+theme_override_font_sizes/font_size = 6
+text = "Oh, I broke it"

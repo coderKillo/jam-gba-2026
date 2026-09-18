@@ -5,13 +5,36 @@ signal area_changed(new_area: String)
 
 @export var speed = 300.0
 @export var jump_velocity = -400.0
+@export var outline := false
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var suspicion_bar: ProgressBar = $SuspicionBar
+
+var suspicion := 0.0:
+	set(value):
+		suspicion = value
+		suspicion_bar.visible = suspicion > 0.0
+		suspicion_bar.value = suspicion
 
 var area: String = "":
 	set(value):
 		area = value
 		area_changed.emit(area)
+
+var _suspicion_decay_timer := 1.0
+
+
+func _ready():
+	if outline:
+		animation.material.set_shader_parameter("thickness", 1.0)
+
+
+func _process(delta):
+	_suspicion_decay_timer -= delta
+	if _suspicion_decay_timer <= 0.0:
+		suspicion -= Global.SUSPICION_DECAY_PER_SEC
+		suspicion = clampf(suspicion, 0.0, 100.0)
+		_suspicion_decay_timer = 1.0
 
 
 func _physics_process(delta):
