@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="1_lue4o"]
 [ext_resource type="Script" uid="uid://c176p1imvld44" path="res://base/menu/main_menu/option_menu.gd" id="2_byskk"]
 [ext_resource type="Script" uid="uid://mhomivb5vuru" path="res://base/menu/main_menu/level_select.gd" id="3_luyhs"]
+[ext_resource type="PackedScene" uid="uid://cv464w8edjm0s" path="res://game/music/background_music.tscn" id="3_ocgfb"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="3_rk3xn"]
 [ext_resource type="Texture2D" uid="uid://dmpic5d7a6p0b" path="res://assets/factory/background.png" id="3_xq2ug"]
 [ext_resource type="Texture2D" uid="uid://dnpmjd0y1oq0t" path="res://assets/itch/title.png" id="4_obtv4"]
@@ -18,7 +19,8 @@ grow_vertical = 2
 theme = ExtResource("1_lue4o")
 script = ExtResource("1_1jjd6")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=2106969971]
+[node name="BackgroundMusic" parent="." unique_id=95445747 instance=ExtResource("3_ocgfb")]
+bus = &"Music"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1758616444]
 layout_mode = 0

@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bqy0re5787vbm" path="res://assets/sfx/broke.wav" id="29_lfysj"]
 [ext_resource type="AudioStream" uid="uid://bm4jdnpafkkb4" path="res://assets/sfx/select.wav" id="30_y60e0"]
 [ext_resource type="AudioStream" uid="uid://cj1bilcg7wsv1" path="res://assets/sfx/catch.wav" id="31_bajmv"]
+[ext_resource type="PackedScene" uid="uid://cv464w8edjm0s" path="res://game/music/background_music.tscn" id="34_lfysj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
 size = Vector2(161, 46)
@@ -745,3 +746,5 @@ bus = &"SFX"
 [node name="Catch" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=169917076]
 stream = ExtResource("31_bajmv")
 bus = &"SFX"
+
+[node name="BackgroundMusic" parent="Controller" unique_id=95445747 instance=ExtResource("34_lfysj")]

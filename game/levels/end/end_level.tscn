@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="4_62227"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="5_4nhw5"]
 [ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="6_x4c63"]
+[ext_resource type="PackedScene" uid="uid://cv464w8edjm0s" path="res://game/music/background_music.tscn" id="7_62227"]
+[ext_resource type="AudioStream" uid="uid://bnjnqm8c368kh" path="res://assets/music/melodie.wav" id="8_pfovr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgh7h"]
 size = Vector2(161, 46)
@@ -25,8 +27,6 @@ texture = ExtResource("2_4nhw5")
 position = Vector2(17, 94)
 collision_layer = 3
 motion_mode = 0
-speed = 100.0
-jump_velocity = -150.0
 
 [node name="InputManager" type="Node2D" parent="." unique_id=786109445]
 script = ExtResource("4_62227")
@@ -80,3 +80,6 @@ offset_bottom = 119.0
 theme_override_fonts/font = ExtResource("6_x4c63")
 theme_override_font_sizes/font_size = 8
 text = "Main Menu"
+
+[node name="BackgroundMusic" parent="." unique_id=95445747 instance=ExtResource("7_62227")]
+stream = ExtResource("8_pfovr")

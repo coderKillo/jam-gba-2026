@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cv464w8edjm0s"]
+
+[ext_resource type="AudioStream" uid="uid://c6lsgh0mset36" path="res://assets/music/BeepBox-Song(2).wav" id="1_c2c3q"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=95445747]
+stream = ExtResource("1_c2c3q")
+autoplay = true
+bus = &"Music"

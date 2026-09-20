@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bfknjdmxyhakq" path="res://assets/tutorial/tutorial_mining.png" id="9_8nljc"]
 [ext_resource type="Texture2D" uid="uid://cvtnp4a16rdfs" path="res://assets/tutorial/tutorial_coworker.png" id="10_7dwpm"]
 [ext_resource type="Texture2D" uid="uid://daxoly5c0qipy" path="res://assets/tutorial/tutorial_arrow.png" id="11_2gyie"]
+[ext_resource type="PackedScene" uid="uid://cv464w8edjm0s" path="res://game/music/background_music.tscn" id="12_2gyie"]
+[ext_resource type="AudioStream" uid="uid://bnjnqm8c368kh" path="res://assets/music/melodie.wav" id="13_72uup"]
 
 [sub_resource type="Animation" id="Animation_xgkct"]
 length = 0.001
@@ -620,3 +622,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("11_2gyie")
 flip_h = true
+
+[node name="BackgroundMusic" parent="." unique_id=95445747 instance=ExtResource("12_2gyie")]
+stream = ExtResource("13_72uup")

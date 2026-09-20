@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bi4h7srv85gde" path="res://assets/factory/background-corridor.png" id="2_3e8fi"]
 [ext_resource type="Script" uid="uid://j2lodahnse2x" path="res://game/entities/player/input_manager.gd" id="3_3e8fi"]
 [ext_resource type="PackedScene" uid="uid://bafc1xgqnsgf0" path="res://game/entities/player/character.tscn" id="3_8yr2k"]
+[ext_resource type="PackedScene" uid="uid://cv464w8edjm0s" path="res://game/music/background_music.tscn" id="5_x55s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3t6r"]
 size = Vector2(161, 46)
@@ -74,3 +75,5 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger" unique_id=2064874325]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_0dgia")
+
+[node name="BackgroundMusic" parent="." unique_id=95445747 instance=ExtResource("5_x55s0")]

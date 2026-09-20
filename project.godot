@@ -14,9 +14,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Jam-Template"
-config/description="s"
-config/version="0.0.1"
+config/name="Factory-Exit"
+config/version="1.0.0"
 run/main_scene="uid://cmmq3qk054d8m"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
