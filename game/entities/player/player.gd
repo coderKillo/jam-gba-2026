@@ -14,6 +14,7 @@ func interact(ore: Ore, viewer: OreViewer) -> Ore:
 	if Items.is_active(Items.Type.BRUSH):
 		if ore.top_value(viewer.selected()) == Ore.CELL.DIRT:
 			Items.consume_item(Items.Type.BRUSH)
+			Events.play_sound.emit(SoundController.SELECT)
 			Events.camera_shake.emit(0.3)
 			viewer.display_ore(ore)
 		return
@@ -33,6 +34,8 @@ func interact(ore: Ore, viewer: OreViewer) -> Ore:
 
 				GameState.gold += 1
 
+			Events.play_sound.emit(SoundController.MINING)
+
 			ore.mine(cell)
 			viewer.mine(cell)
 
@@ -40,6 +43,7 @@ func interact(ore: Ore, viewer: OreViewer) -> Ore:
 	viewer.display_ore(ore)
 
 	if ore.is_broken():
+		Events.play_sound.emit(SoundController.BROKE)
 		viewer.broke(ore)
 		suspicion += Global.SUSPICION_PLAYER_BROKE_ORE
 		return null

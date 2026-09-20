@@ -24,6 +24,15 @@
 [ext_resource type="PackedScene" uid="uid://qclmghaee000" path="res://game/gui/gold_label.tscn" id="18_gjp0b"]
 [ext_resource type="Texture2D" uid="uid://s45in7acrvv0" path="res://assets/gui_assets/art/GuiTexture.tres" id="19_eb0yd"]
 [ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="20_htuni"]
+[ext_resource type="Script" uid="uid://cj7e5u2xmimug" path="res://base/sfx/sound_controller.gd" id="25_htuni"]
+[ext_resource type="AudioStream" uid="uid://dwa2rdv44cx5g" path="res://assets/sfx/dialog.wav" id="26_slhpv"]
+[ext_resource type="AudioStream" uid="uid://b11ixvh74bjr4" path="res://assets/sfx/alarm.wav" id="27_7yyto"]
+[ext_resource type="AudioStream" uid="uid://inecsxq43lw5" path="res://assets/sfx/shoot.wav" id="27_jug8x"]
+[ext_resource type="AudioStream" uid="uid://dqbpoxfixx5t3" path="res://assets/sfx/mining.wav" id="28_7yyto"]
+[ext_resource type="AudioStream" uid="uid://u88vj4d4jau6" path="res://assets/sfx/move.wav" id="28_lfysj"]
+[ext_resource type="AudioStream" uid="uid://bqy0re5787vbm" path="res://assets/sfx/broke.wav" id="29_lfysj"]
+[ext_resource type="AudioStream" uid="uid://bm4jdnpafkkb4" path="res://assets/sfx/select.wav" id="30_y60e0"]
+[ext_resource type="AudioStream" uid="uid://cj1bilcg7wsv1" path="res://assets/sfx/catch.wav" id="31_bajmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dn4rf"]
 size = Vector2(161, 46)
@@ -699,3 +708,40 @@ offset_bottom = 18.0
 
 [node name="InputManager" type="Node2D" parent="Controller" unique_id=219787534]
 script = ExtResource("8_6icyu")
+
+[node name="SoundController" type="Node" parent="Controller" unique_id=1321561661]
+script = ExtResource("25_htuni")
+metadata/_custom_type_script = "uid://cj7e5u2xmimug"
+
+[node name="Dialogue" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=546472069]
+stream = ExtResource("26_slhpv")
+bus = &"SFX"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=1950561072]
+stream = ExtResource("27_7yyto")
+bus = &"SFX"
+
+[node name="GunMove" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=1469877345]
+stream = ExtResource("28_lfysj")
+volume_db = -30.0
+bus = &"SFX"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=214753652]
+stream = ExtResource("27_jug8x")
+bus = &"SFX"
+
+[node name="Mining" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=294916417]
+stream = ExtResource("28_7yyto")
+bus = &"SFX"
+
+[node name="Broke" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=710167530]
+stream = ExtResource("29_lfysj")
+bus = &"SFX"
+
+[node name="Select" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=1580286213]
+stream = ExtResource("30_y60e0")
+bus = &"SFX"
+
+[node name="Catch" type="AudioStreamPlayer" parent="Controller/SoundController" unique_id=169917076]
+stream = ExtResource("31_bajmv")
+bus = &"SFX"

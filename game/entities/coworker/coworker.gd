@@ -39,6 +39,7 @@ func shot():
 func dialog(text: String):
 	if dialog_tween:
 		dialog_tween.kill()
+	Events.play_sound.emit(SoundController.DIALOGUE)
 	dialog_tween = get_tree().create_tween()
 	dialog_label.visible_ratio = 0.0
 	dialog_label.text = text
@@ -52,6 +53,7 @@ func dialog(text: String):
 func knockout(time: float):
 	working = false
 	sprite.rotation_degrees = -90.0
+	Events.play_sound.emit(SoundController.SHOOT)
 	await get_tree().create_timer(time).timeout
 	working = true
 	sprite.rotation_degrees = 0

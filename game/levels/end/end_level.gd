@@ -6,6 +6,7 @@ extends Node2D
 func _ready():
 	$InputManager.move.connect(_on_player_move)
 	$MainMenuButton.pressed.connect(_on_main_menu_pressed)
+	$MainMenuButton.grab_focus.call_deferred()
 
 
 func _on_player_move(direction: Vector2):

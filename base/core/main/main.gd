@@ -59,8 +59,12 @@ func _on_move(direction: Vector2):
 		Mode.MOVE:
 			player.move(direction)
 		Mode.VIEW_ORE:
+			if direction.length() > 0.0:
+				Events.play_sound.emit(SoundController.SELECT)
 			ore_viewer.move(direction)
 		Mode.SELECT_ITEM:
+			if direction.length() > 0.0:
+				Events.play_sound.emit(SoundController.SELECT)
 			shop_viewer.move(direction)
 
 
@@ -87,6 +91,7 @@ func _on_interact():
 			player.suspicion -= Global.SUSPICION_DECAY_PROCESS_ORE
 			conveyor.put_ore(_current_ore, player.slot())
 			ore_viewer.reset()
+			Events.play_sound.emit(SoundController.SELECT)
 
 		Mode.SELECT_ITEM:
 			_current_mode = Mode.MOVE
@@ -95,11 +100,13 @@ func _on_interact():
 		Mode.MOVE:
 			if player.area == "Workbench":
 				_current_mode = Mode.SELECT_ITEM
+				Events.play_sound.emit(SoundController.SELECT)
 				shop_viewer.display()
 
 			if player.area.match("Slot?"):
 				_current_mode = Mode.VIEW_ORE
 				_current_ore = Ore.create_random()
+				Events.play_sound.emit(SoundController.SELECT)
 				ore_viewer.display_ore(_current_ore)
 
 

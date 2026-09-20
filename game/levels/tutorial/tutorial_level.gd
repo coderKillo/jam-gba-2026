@@ -13,6 +13,7 @@ var page = 0
 
 func _ready():
 	start_button.pressed.connect(_on_start_pressed)
+	start_button.grab_focus.call_deferred()
 	start_button.hide()
 
 	animation.play("intro")

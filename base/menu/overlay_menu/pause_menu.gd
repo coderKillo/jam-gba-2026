@@ -5,6 +5,7 @@ func _ready():
 	%MainMenu.pressed.connect(_on_main_menu_pressed)
 	%Restart.pressed.connect(_on_restart_pressed)
 	%Continue.pressed.connect(_on_continue_pressed)
+	%Continue.grab_focus.call_deferred()
 
 
 func _unhandled_input(event: InputEvent) -> void:

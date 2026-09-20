@@ -4,9 +4,10 @@ var sub_menu: Control
 
 
 func _ready():
-	%Continue.visible = GameState.get_max_level_reached() > 0
-	%LevelSelect.visible = GameState.get_max_level_reached() > 0
+	%Continue.visible = GameState.gold > 0
+	%LevelSelect.visible = false
 	%Back.visible = false
+	%NewGame.grab_focus.call_deferred()
 
 	%Continue.pressed.connect(_on_continue_pressed)
 	%NewGame.pressed.connect(_on_new_game_pressed)
@@ -30,10 +31,12 @@ func _ready():
 
 func _on_option_pressed():
 	_open_sub_menu($Option)
+	%MasterVolume.grab_focus.call_deferred()
 
 
 func _on_back_pressed():
 	_close_sub_menu()
+	%NewGame.grab_focus.call_deferred()
 
 
 func _on_continue_pressed():
@@ -49,7 +52,7 @@ func _on_new_game_pressed():
 
 func _on_new_game_confirmed():
 	GameState.reset()
-	SceneManager.load_level(GameState.get_current_level())
+	SceneManager.load_tutorial_scene()
 
 
 func _on_level_select_pressed():

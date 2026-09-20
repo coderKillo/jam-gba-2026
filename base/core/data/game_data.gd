@@ -8,3 +8,4 @@ extends Resource
 @export var gold: int = 0
 @export var coworkers: int = Global.COWORKER_INIT_NUMBER
 @export var items: Array[String] = []
+@export var tutorial: bool = false

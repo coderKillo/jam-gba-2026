@@ -6,6 +6,8 @@ func register_button(button: AnimatedButton) -> void:
 		return
 	button.mouse_entered.connect(_on_mouse_entered.bind(button))
 	button.mouse_exited.connect(_on_mouse_exited.bind(button))
+	button.focus_entered.connect(_on_mouse_entered.bind(button))
+	button.focus_exited.connect(_on_mouse_exited.bind(button))
 	button.button_down.connect(_on_button_down.bind(button))
 	button.button_up.connect(_on_button_up.bind(button))
 

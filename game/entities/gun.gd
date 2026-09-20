@@ -21,6 +21,8 @@ func move_to_index(index: int) -> void:
 
 	_current_mode = Mode.DRIVE_TO_INDEX
 
+	Events.play_sound.emit(SoundController.GUN_MOVE)
+
 	var distance = (offset * index) - _sprite.position.y
 	var tween := get_tree().create_tween()
 	(
@@ -59,6 +61,7 @@ func _process(_delta):
 func follow_character(character: Character) -> void:
 	_current_mode = Mode.FOLLOW_CHARACTER
 	_waring.show()
+	Events.play_sound.emit(SoundController.ALARM)
 	await get_tree().create_timer(0.5).timeout
 	_follow = character
 
@@ -75,6 +78,7 @@ func _shot():
 	tween.tween_callback(func(): _sprite.play("fire"))
 	tween.tween_interval(0.1)
 	tween.tween_callback(func(): _projectile.show())
+	tween.tween_callback(func(): Events.play_sound.emit(SoundController.SHOOT))
 	tween.tween_callback(func(): TweenAnimation.create_fade_in_out_tween(_flash_overlay, 0.1, 0.2))
 	tween.tween_interval(0.3)
 	tween.tween_callback(func(): _follow.shot())
