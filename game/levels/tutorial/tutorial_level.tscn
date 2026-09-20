@@ -3,14 +3,249 @@
 [ext_resource type="Script" uid="uid://d1b4ff4lpo4jo" path="res://game/levels/tutorial/tutorial_level.gd" id="1_6rvpy"]
 [ext_resource type="PackedScene" uid="uid://cub5ixau0orgh" path="res://base/menu/common/animated_button.tscn" id="2_70olc"]
 [ext_resource type="FontFile" uid="uid://0uu7i5om5845" path="res://assets/font/6px-Normal.ttf" id="3_yxhpw"]
+[ext_resource type="Shader" uid="uid://bmro58wslre06" path="res://assets/shaders/fate.gdshader" id="4_isxeg"]
+[ext_resource type="Texture2D" uid="uid://v84pibfjcwh6" path="res://assets/intro/intro.png" id="4_yxhpw"]
+[ext_resource type="Texture2D" uid="uid://dubgwk0tdeg0" path="res://assets/color/st-gameboy-magma-1x.png" id="6_xgkct"]
+[ext_resource type="Theme" uid="uid://4r6b2cnujbph" path="res://assets/gui_assets/waste_no_space.theme" id="7_8kx60"]
+[ext_resource type="Texture2D" uid="uid://bu43srob5e4ic" path="res://assets/tutorial/tutorial_suspicion.png" id="8_8kx60"]
+[ext_resource type="Texture2D" uid="uid://bfknjdmxyhakq" path="res://assets/tutorial/tutorial_mining.png" id="9_8nljc"]
+[ext_resource type="Texture2D" uid="uid://cvtnp4a16rdfs" path="res://assets/tutorial/tutorial_coworker.png" id="10_7dwpm"]
+[ext_resource type="Texture2D" uid="uid://daxoly5c0qipy" path="res://assets/tutorial/tutorial_arrow.png" id="11_2gyie"]
+
+[sub_resource type="Animation" id="Animation_xgkct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/Text1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro/Text1:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro/Overlay:material:shader_parameter/brightness")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro/Text2:visible_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Intro/Text2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Intro/Sprite2D:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Intro/Text3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Intro/Text3:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_70olc"]
 resource_name = "intro"
+length = 37.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/Text1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.0666666, 11.066667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro/Text1:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6.0666666, 9.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro/Overlay:material:shader_parameter/brightness")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 11.1, 13.09, 15.17, 17.1, 22.144966, 24.08, 28.033333, 29.98611),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.0, 4.7499999933364734e-08, 4.7499999933364734e-08, -1.0, -1.0, 4.7499999933364734e-08, 4.7499999933364734e-08, -1.0, -1.0, 4.7499999933364734e-08, 4.7499999933364734e-08, -1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro/Text2:visible_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(17.133333, 20.233334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Intro/Text2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(17.133333, 22.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Intro/Sprite2D:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.01999998, 11.1, 22.1, 26.066668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 0, 1]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Intro/Text3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(30, 37.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Intro/Text3:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(30, 33.010002, 33.03),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxhpw"]
 _data = {
+&"RESET": SubResource("Animation_xgkct"),
 &"intro": SubResource("Animation_70olc")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isxeg"]
+shader = ExtResource("4_isxeg")
+shader_parameter/brightness = -1.0
+shader_parameter/source_palette = ExtResource("6_xgkct")
+shader_parameter/target_palette = ExtResource("6_xgkct")
 
 [node name="TutorialLevel" type="Node2D" unique_id=1421846376]
 script = ExtResource("1_6rvpy")
@@ -26,14 +261,362 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.050980393, 0.015686275, 0.019607844, 1)
 
-[node name="StartButton" parent="." unique_id=1940137882 instance=ExtResource("2_70olc")]
-offset_left = 56.0
-offset_top = 118.0
-offset_right = 106.0
-offset_bottom = 130.0
+[node name="Intro" type="Control" parent="." unique_id=2003095764]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Animation" type="AnimationPlayer" parent="Intro" unique_id=183819864]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_yxhpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Intro" unique_id=785701291]
+position = Vector2(80, 72)
+texture = ExtResource("4_yxhpw")
+hframes = 4
+frame = 3
+
+[node name="Overlay" type="ColorRect" parent="Intro" unique_id=1095781065]
+material = SubResource("ShaderMaterial_isxeg")
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 144.0
+
+[node name="Text1" type="RichTextLabel" parent="Intro" unique_id=291321511]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 109.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_8kx60")
+text = "I . . . 
+I Don't remember.
+I just . . .
+woke up here."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="Text2" type="RichTextLabel" parent="Intro" unique_id=1631438465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 109.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_8kx60")
+text = "Work . . .
+Work day by day.
+How could I have forgotten."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="Text3" type="RichTextLabel" parent="Intro" unique_id=2104952094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 109.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_8kx60")
+text = "I need to find you.
+But first I need to leave this godless place!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="Tutorial" type="Control" parent="." unique_id=630025412]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tutorial1" type="Control" parent="Tutorial" unique_id=1537195525]
+visible = false
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 144.0
+theme = ExtResource("7_8kx60")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Tutorial/Tutorial1" unique_id=705485726]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Each worker has a suspicion level"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/Tutorial1" unique_id=499150830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 37.0
+offset_right = -22.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Stealing gold while gun is  watching, break ore or leaving work place raises suspicion"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Tutorial/Tutorial1" unique_id=2128119048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 73.0
+offset_right = -16.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Process ore to lower suspicion"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Tutorial/Tutorial1" unique_id=1199941700]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 106.0
+offset_right = 1.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Max suspicion, worker are shot"
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/Tutorial1" unique_id=204224033]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_8kx60")
+
+[node name="Tutorial2" type="Control" parent="Tutorial" unique_id=1482384014]
+visible = false
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 144.0
+theme = ExtResource("7_8kx60")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Tutorial/Tutorial2" unique_id=1806439874]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = 12.0
+offset_right = -11.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Go to the conveyor belt to pick up ore block"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/Tutorial2" unique_id=611353495]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = -44.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "mining removes a cell and all directly beside it."
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Tutorial/Tutorial2" unique_id=295934926]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = 81.0
+offset_right = -7.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "If 3 cells are empty, the block breaks"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Tutorial/Tutorial2" unique_id=1371878767]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 58.0
+offset_top = 111.0
+offset_right = 18.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Collect gold and by items
+
+GOLD -> SHOP"
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/Tutorial2" unique_id=1347745376]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_8nljc")
+
+[node name="Tutorial3" type="Control" parent="Tutorial" unique_id=733637503]
+visible = false
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 144.0
+theme = ExtResource("7_8kx60")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Tutorial/Tutorial3" unique_id=308598155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = 8.0
+offset_right = -3.3450012
+offset_bottom = -70.455
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Place the ore on the conveyor belt
+
+Workers inspect it one after another
+"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/Tutorial3" unique_id=1936164843]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 68.0
+offset_right = 10.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "a worker removes 
+the same cell every time"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Tutorial/Tutorial3" unique_id=2001063263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 103.0
+offset_right = -2.3650055
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Worker will comment if cell is empty or when break block"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Tutorial/Tutorial3" unique_id=1742472573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = 133.0
+offset_right = 9.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_yxhpw")
+theme_override_font_sizes/normal_font_size = 8
+text = "Gun kills suspicios"
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/Tutorial3" unique_id=1970863476]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_7dwpm")
+
+[node name="StartButton" parent="Tutorial" unique_id=1940137882 instance=ExtResource("2_70olc")]
+visible = false
+layout_mode = 1
+offset_left = 40.0
+offset_top = 54.0
+offset_right = 90.0
+offset_bottom = 66.0
 theme_override_fonts/font = ExtResource("3_yxhpw")
 theme_override_font_sizes/font_size = 8
-text = "Start Work"
+text = "Start Shift"
 
-[node name="Animation" type="AnimationPlayer" parent="." unique_id=183819864]
-libraries/ = SubResource("AnimationLibrary_yxhpw")
+[node name="RightArrow" type="Control" parent="Tutorial" unique_id=1709963207]
+visible = false
+anchors_preset = 0
+offset_left = 125.0
+offset_top = 113.0
+offset_right = 165.0
+offset_bottom = 153.0
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/RightArrow" unique_id=701806414]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_2gyie")
+
+[node name="LeftArrow" type="Control" parent="Tutorial" unique_id=286634000]
+visible = false
+anchors_preset = 0
+offset_left = -5.0
+offset_top = 112.0
+offset_right = 35.0
+offset_bottom = 152.0
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/LeftArrow" unique_id=224895125]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_2gyie")
+flip_h = true
