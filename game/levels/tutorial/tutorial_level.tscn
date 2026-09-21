@@ -350,6 +350,7 @@ visible_characters_behavior = 1
 visible_ratio = 0.0
 
 [node name="Tutorial" type="Control" parent="." unique_id=630025412]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

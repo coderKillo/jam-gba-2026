@@ -13,7 +13,6 @@ var page = 0
 
 func _ready():
 	start_button.pressed.connect(_on_start_pressed)
-	start_button.grab_focus.call_deferred()
 	start_button.hide()
 
 	animation.play("intro")
@@ -28,6 +27,8 @@ func _input(event: InputEvent):
 		if page < 3:
 			page += 1
 			_update_tutorial_page()
+		if page == 3:
+			start_button.grab_focus.call_deferred()
 
 	if event.is_action_pressed("move_left"):
 		if page > 0:
